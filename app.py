@@ -573,11 +573,15 @@ def inject_custom_css():
         """
         <style>
             .block-container {
-                padding-top: 1rem;
+                padding-top: 2.5rem;
                 padding-bottom: 1.5rem;
                 max-width: 1100px;
                 padding-left: 2rem;
                 padding-right: 2rem;
+            }
+            [data-testid="stHorizontalBlock"],
+            [data-testid="column"] {
+                overflow: visible !important;
             }
             [data-testid="stSidebar"] {
                 background: #FFFFFF;
@@ -667,6 +671,15 @@ def inject_custom_css():
                 color: #C2410C;
                 border-color: #FED7AA;
             }
+            [data-testid="stMainBlockContainer"] h1 {
+                color: #0F172A !important;
+                font-size: 1.75rem !important;
+                font-weight: 700 !important;
+                line-height: 1.3 !important;
+                margin: 0 0 0.35rem 0 !important;
+                padding: 0.25rem 0 0 0 !important;
+                overflow: visible !important;
+            }
         </style>
         """,
         unsafe_allow_html=True,
@@ -686,28 +699,20 @@ def render_header(company: Dict[str, Any], logo_path: Optional[Path], chunk_coun
         knowledge_label = "No company data yet"
         knowledge_class = "meta-chip-warn"
 
-    logo_col, info_col = st.columns([1, 11], vertical_alignment="center")
-    with logo_col:
-        if logo_path:
-            st.image(str(logo_path), width=52)
-        else:
-            st.markdown("##### 🤖")
+    if logo_path:
+        st.image(str(logo_path), width=48)
 
-    with info_col:
-        st.subheader(bot_name)
-        st.markdown(
-            f"<p class='app-goal'>{bot_goal}</p>"
-            f"<div class='app-meta'>"
-            f"<span class='meta-chip meta-chip-company'>{company_name}</span>"
-            f"<span class='meta-chip {knowledge_class}'>{knowledge_label}</span>"
-            f"<span class='meta-chip {status_class}'>{status_label}</span>"
-            f"</div>",
-            unsafe_allow_html=True,
-        )
-        st.markdown(
-            "<div style='margin-top:0.85rem; border-bottom:1px solid #E2E8F0;'></div>",
-            unsafe_allow_html=True,
-        )
+    st.title(bot_name)
+    st.write(bot_goal)
+    st.markdown(
+        f"<div class='app-meta'>"
+        f"<span class='meta-chip meta-chip-company'>{company_name}</span>"
+        f"<span class='meta-chip {knowledge_class}'>{knowledge_label}</span>"
+        f"<span class='meta-chip {status_class}'>{status_label}</span>"
+        f"</div>",
+        unsafe_allow_html=True,
+    )
+    st.divider()
 
 
 MODEL_CHOICES = ["glm-5-1", "hypernova-60b"]
