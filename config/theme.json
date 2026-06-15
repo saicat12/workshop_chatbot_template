@@ -2,10 +2,10 @@
   "_readme": "Personaliza los colores del chatbot aquí. Usa códigos hex (#RRGGBB). No hace falta tocar app.py.",
   "_readme_en": "Customize chatbot colors here. Use hex codes (#RRGGBB). No need to edit app.py.",
   "colors": {
-    "page_background": "#F8FAFC",
+    "page_background": "#1F72CC",
     "sidebar_background": "#FFFFFF",
     "primary_accent": "#334155",
-    "title_text": "#0F172A",
+    "title_text": "#55D475",
     "body_text": "#475569",
     "muted_text": "#64748B",
     "border": "#E2E8F0",
